@@ -28,6 +28,7 @@ public class HelloWorldController
 
     /**
      * Method that is backed to a submit button of a form.
+     * @return 
      */
     public String send()
     {

@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package org.apache.myfaces.test.state;
 
 import java.io.ByteArrayOutputStream;
@@ -11,14 +8,11 @@ import javax.faces.application.StateManager;
 import javax.faces.application.StateManagerWrapper;
 import javax.faces.context.FacesContext;
 
-/**
- *
- * @author lu4242
- */
+
 public class SaveSizeStateManagerWrapper extends StateManagerWrapper
 {
 
-    private StateManager _delegate;
+    private final StateManager _delegate;
     
     public SaveSizeStateManagerWrapper(StateManager delegate)
     {
@@ -40,9 +34,9 @@ public class SaveSizeStateManagerWrapper extends StateManagerWrapper
             try
             {
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();  
-                ObjectOutputStream oos = new ObjectOutputStream(baos);  
-                oos.writeObject(state);  
-                oos.close();
+                try (ObjectOutputStream oos = new ObjectOutputStream(baos)) {
+                    oos.writeObject(state);
+                }
                 System.out.println("State size: "+Integer.toString(baos.toByteArray().length)+" bytes");
             }
             catch (IOException e)
