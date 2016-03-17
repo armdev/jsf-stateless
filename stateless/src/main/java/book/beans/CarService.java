@@ -49,7 +49,7 @@ public class CarService implements Serializable {
     }
      
     public List<Car> createCars(int size) {
-        List<Car> list = new ArrayList<Car>();
+        List<Car> list = new ArrayList<>();
         for(int i = 0 ; i < size ; i++) {
             list.add(new Car(getRandomId(), getRandomBrand(), getRandomYear(), getRandomColor()));
         }
@@ -78,7 +78,7 @@ public class CarService implements Serializable {
     }
      
     public boolean getRandomSoldState() {
-        return (Math.random() > 0.5) ? true: false;
+        return (Math.random() > 0.5);
     }
  
     public List<String> getColors() {
