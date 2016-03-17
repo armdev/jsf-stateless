@@ -58,9 +58,9 @@ public class HelloWorldController
             try
             {
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();  
-                ObjectOutputStream oos = new ObjectOutputStream(baos);  
-                oos.writeObject(state);  
-                oos.close();
+                try (ObjectOutputStream oos = new ObjectOutputStream(baos)) {
+                    oos.writeObject(state);
+                }
                 context.getAttributes().put("stateSize", 
                         Integer.toString(baos.toByteArray().length));
             }
